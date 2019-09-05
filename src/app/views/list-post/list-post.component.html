@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div  class="row card-group">
+      <div class="col-md-4"
+          *ngFor="let post of posts">
+        <div  class="card mx-auto"
+              style="margin: 15px;">
+            <img  class="card-img-top" 
+                  src="{{publicUrl}}{{post.photoUrl}}" 
+                  alt="talos"
+                  height="300">
+            <div class="card-body text-center">
+              <h4 class="card-title">
+                  {{post.title}}
+              </h4>
+              <p  class="card-text">
+                  {{post.description}}
+              </p>
+              <div class="row mx-auto">
+                  <h5 *ngFor="let item of post.tags"
+                      class="card-text">
+                      <span>{{item}}, </span>
+                      &nbsp;
+                  </h5>
+                  <!-- <a  [routerLink]="['./detailpost']"
+                      class="btn btn-primary">
+                      View
+                  </a> -->
+              </div>
+              
+              
+            </div>
+        </div>          
+      </div>
+  </div>
+</div>

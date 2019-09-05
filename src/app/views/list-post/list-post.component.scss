@@ -1,0 +1,9 @@
+$text-after: 'Add new post';
+
+::ng-deep .btn-hover.btn.btn-danger span:hover::before {
+        content: '';
+}
+
+::ng-deep .btn-hover.btn.btn-danger span:hover::after {
+    content: $text-after;
+}
