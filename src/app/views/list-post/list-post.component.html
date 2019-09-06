@@ -4,10 +4,12 @@
           *ngFor="let post of posts">
         <div  class="card mx-auto"
               style="margin: 15px;">
-            <img  class="card-img-top" 
-                  src="{{publicUrl}}{{post.photoUrl}}" 
-                  alt="talos"
-                  height="300">
+              <div class="image-card">
+                <img  class="card-img-top" 
+                      src="{{publicUrl}}{{post.photoUrl}}" 
+                      alt="talos"
+                      height="400">
+              </div>
             <div class="card-body text-center">
               <h4 class="card-title">
                   {{post.title}}
@@ -15,19 +17,19 @@
               <p  class="card-text">
                   {{post.description}}
               </p>
-              <div class="row mx-auto">
+              <div class="row mx-auto footer">
                   <h5 *ngFor="let item of post.tags"
-                      class="card-text">
-                      <span>{{item}}, </span>
-                      &nbsp;
+                      class="card-text"
+                      style="margin-top: 10px">
+                    <span>{{item}}, </span>
+                    &nbsp;
                   </h5>
-                  <!-- <a  [routerLink]="['./detailpost']"
-                      class="btn btn-primary">
+                  <a  class="btn btn-primary ml-auto"
+                      (click)="viewDetail()"
+                      style="margin-top: 10px">
                       View
-                  </a> -->
+                  </a>
               </div>
-              
-              
             </div>
         </div>          
       </div>

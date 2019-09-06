@@ -1,0 +1,7 @@
+::ng-deep .btn-hover.btn.btn-danger span:hover::before {
+    content: '';
+}
+
+::ng-deep .btn-hover.btn.btn-danger span:hover::after {
+    content: 'Add new post';
+}

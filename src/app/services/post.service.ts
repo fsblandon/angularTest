@@ -17,4 +17,13 @@ export class PostService {
       this.URL + 'posts'
     );
   }
+
+  addPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(
+      this.URL + 'posts',
+      {
+        post
+      }
+    );
+  }
 }

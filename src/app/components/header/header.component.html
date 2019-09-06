@@ -4,13 +4,14 @@
           width="30" 
           height="30" 
           class="d-inline-block align-top" 
-          alt="">
+          alt="talos">
     Talos Technical Test
   </a>
   <button type="button" 
           class="btn-hover btn btn-danger"
           [routerLink]="['./addpost']"
-          (click)="flag">
+          (click)="flag"
+          *ngIf="nav.visible">
           <span></span>
   </button>
 </nav>

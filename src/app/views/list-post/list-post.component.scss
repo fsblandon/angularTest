@@ -1,9 +1,26 @@
-$text-after: 'Add new post';
-
 ::ng-deep .btn-hover.btn.btn-danger span:hover::before {
-        content: '';
+    content: '';
 }
 
 ::ng-deep .btn-hover.btn.btn-danger span:hover::after {
-    content: $text-after;
+    content: 'Add new post';
+}
+
+.image-card {
+    top: 0;
+    left: 0;
+}
+
+.image-card img {
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+}
+
+.image-card img:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
+}
+
+.footer {
+    border-top: 1px solid gray;
 }
