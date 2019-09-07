@@ -3,6 +3,7 @@ import { PostService } from 'src/app/services/post.service';
 import { Post } from 'src/app/models/post';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-post',
@@ -17,7 +18,8 @@ export class ListPostComponent implements OnInit {
   constructor(
     private postService: PostService,
     public nav: NavbarService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class ListPostComponent implements OnInit {
         this.posts = data;
       },
       (error) => {
-        console.log(error);
+        this.toastr.error('Fail ' + error, 'Image dont saved', { timeOut: 3000, positionClass: 'toast-bottom-center' });
       }
     );
 

@@ -3,7 +3,6 @@ import { NavbarService } from 'src/app/services/navbar.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/services/post.service';
-import { Location } from '@angular/common';
 import { Post } from 'src/app/models/post';
 import { Router } from '@angular/router';
 
@@ -63,7 +62,6 @@ export class NewPostComponent implements OnInit {
     reader.onload = (_event) => {
       this.photoUrl = reader.result;
     };
-    console.log(this.imagePath);
   }
 
   submit() {
