@@ -18,12 +18,17 @@ export class PostService {
     );
   }
 
-  addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(
-      this.URL + 'posts',
-      {
-        post
-      }
+  addPost(post: Post): Observable<any> {
+    return this.http.post<any>(
+      this.URL + 'posts', post
     );
+  }
+
+  saveImage(id: string, file: any): Observable<any> {
+    return this.http.put(this.URL + 'posts/' + id + '/picture', file);
+  }
+
+  getPostById(id: string): Observable<Post> {
+    return this.http.get<Post>(this.URL + 'posts/' + id);
   }
 }

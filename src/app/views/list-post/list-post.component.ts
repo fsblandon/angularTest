@@ -34,8 +34,8 @@ export class ListPostComponent implements OnInit {
     this.nav.show();
   }
 
-  viewDetail() {
-    this.router.navigate(['/detailpost']);
+  viewDetail(id: string) {
+    this.router.navigate([`/detailpost/${id}`]);
   }
 
 }

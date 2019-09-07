@@ -5,3 +5,9 @@
 ::ng-deep .btn-hover.btn.btn-danger span:hover::after {
     content: 'Add new post';
 }
+
+.textTag {
+    margin-top: 10px;
+    font-family: inherit; 
+    font-size: 20px;
+}

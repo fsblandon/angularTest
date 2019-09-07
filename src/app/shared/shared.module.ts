@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ListPostComponent } from '../views/list-post/list-post.component';
 import { NewPostComponent } from '../views/new-post/new-post.component';
 import { DetailPostComponent } from '../views/detail-post/detail-post.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ListPostComponent,
@@ -16,7 +18,8 @@ import { DetailPostComponent } from '../views/detail-post/detail-post.component'
   exports: [
     ListPostComponent,
     NewPostComponent,
-    DetailPostComponent
+    DetailPostComponent,
+    FormsModule,
   ]
 })
 export class SharedModule { }

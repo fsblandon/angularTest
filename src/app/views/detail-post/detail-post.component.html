@@ -1,3 +1,35 @@
-<p>
-  detail-post works!
-</p>
+<div  class="container-fluid"
+      style="margin-top: 20px;">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+            <img  class="card-img-top" 
+                  src="{{publicUrl}}{{post.photoUrl}}" 
+                  alt="talos"
+                  height="600">
+        </div>
+          
+      </div>
+      <div  class="row" 
+            style="margin-top: 20px;">
+        <div class="col-md-6 mx-auto text-center">
+            <h4 class="card-title">
+                {{post.title}}
+            </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+          <p  class="card-text">
+              {{post.description}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+          <span *ngFor="let item of post.tags"
+                class="textTag">
+              {{item}}
+          </span>
+        </div>
+      </div>
+</div>

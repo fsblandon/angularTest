@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: './views/new-post/new-post.module#NewPostModule'
   },
   {
-    path: 'detailpost',
+    path: 'detailpost/:id',
     loadChildren: './views/detail-post/detail-post.module#DetailPostModule'
   },
   {

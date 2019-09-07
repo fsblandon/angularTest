@@ -1,8 +1,10 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Post } from 'src/app/models/post';
 import { ToastrService } from 'ngx-toastr';
+import { PostService } from 'src/app/services/post.service';
+import { Location } from '@angular/common';
+import { Post } from 'src/app/models/post';
 import { Router } from '@angular/router';
 
 
@@ -23,13 +25,12 @@ export class NewPostComponent implements OnInit {
     tags: [],
     photoUrl: ''
   };
-  dataTag: string;
-  tag: string;
 
   constructor(
     public nav: NavbarService,
     private fb: FormBuilder,
     private toastr: ToastrService,
+    private postService: PostService,
     private router: Router) { }
 
   ngOnInit() {
@@ -37,14 +38,13 @@ export class NewPostComponent implements OnInit {
     this.newPost = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      tags: [[], Validators.required],
-      image: ['', Validators.required]
+      tag: ['']
     });
   }
 
   addTag() {
-    this.newPost.get('tags').setValue(this.dataTag);
-    this.tag = this.dataTag;
+    this.post.tags.push(this.newPost.controls.tag.value);
+    this.newPost.get('tag').reset();
   }
 
   preview(files) {
@@ -67,14 +67,33 @@ export class NewPostComponent implements OnInit {
   }
 
   submit() {
+    const fd = new FormData();
+    fd.append('image', this.imagePath[0], this.imagePath[0].name);
     if (this.newPost.valid) {
-      this.toastr.success('Success', 'Post Created', { timeOut: 3000, positionClass: 'toast-bottom-center' });
-      this.router.navigate(['/listpost']);
+      this.post.title = this.newPost.controls.title.value;
+      this.post.description = this.newPost.controls.description.value;
+      this.postService.addPost(this.post).subscribe(
+        (data) => {
+          this.post.id = data.id;
+          this.postService.saveImage(data.id, fd).subscribe(
+            (res: any) => {
+              this.toastr.success('Success', 'Post Created', { timeOut: 3000, positionClass: 'toast-bottom-center' });
+              this.router.navigate(['/listpost']);
+            },
+            (error) => {
+              this.toastr.error('Fail', 'Image dont saved', { timeOut: 3000, positionClass: 'toast-bottom-center' });
+            }
+          );
+        },
+        (error) => {
+          this.toastr.error('Fail', 'Post dont created', { timeOut: 3000, positionClass: 'toast-bottom-center' });
+        }
+      );
     }
   }
 
-  getWords(event: any) {
-    this.dataTag = event.srcElement.value;
+  deleteTag(item: any) {
+    this.post.tags.includes(item) ? this.post.tags.splice(this.post.tags.indexOf(item), 1) : this.post.tags.sort();
   }
 
 }
